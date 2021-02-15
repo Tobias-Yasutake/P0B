@@ -115,8 +115,13 @@ public inherited sharing class P0B {
         //List<String> deck = new List<String>();
         String[] deck = new string[0];
 
+        
+        //The deck is the analogy that makes the most sense to me
+
         for(integer i = 0; i < s.length(); i++) {
             string x = s.substring(i, i + 1);
+            /*this for loop splits the string into 1 character long strings
+            * and runs the for loop on each individual character. */
 
             if(isaBracket(x) == 'open') {
                 deck.add(x);
@@ -144,8 +149,13 @@ public inherited sharing class P0B {
                 if (x != deck.remove(deck.size() - 1)) {
                     return false;
                 }
-
+            
             }
+
+            /*
+            else if(isaBracket(x) == 'false') {
+                return false;
+            } */
 
         }
 
@@ -158,9 +168,9 @@ public inherited sharing class P0B {
     }
 
     public static void updateAccountSize( ) {
-        Account[] sizeupdate = Database.query('SELECT NumberOfEmployees FROM account'); //is the ID select needed? No. Is ID implied or is it not needed?
+        Account[] sizeupdate = Database.query('SELECT NumberOfEmployees FROM account');
 
-        for (Account record : sizeupdate) { //can I use a switch here, or does it not work because switches require a single number?
+        for (Account record : sizeupdate) {
             if (record.NumberOfEmployees <= 1000){
                 record.size__c = 'Small';
             }
@@ -181,7 +191,7 @@ public inherited sharing class P0B {
     }
 
     public static void updateCALeads( ) {
-        List<List<sobject>> SearchQuery = search.query('FIND {ca} RETURNING lead (stateCode)');
+        List<List<sobject>> SearchQuery = [FIND 'ca' RETURNING lead (stateCode)];
         //This almost definitely would have been simpler if I used SOQL rather than SOSL
 
         List<Lead> CaLeads = SearchQuery[0];
@@ -207,9 +217,5 @@ public inherited sharing class P0B {
         update PastDueOpps;
 
     }
-    /** 8. Create a method that will find all Opportunities which have already passed their Close Date 
-    * and have a Stage field that is not 'Closed Won'. Since they have passed their Close Date and 
-    * they are not marked as 'Closed Won', they should be marked as 'Closed Lost'.
-    */
 
 }
